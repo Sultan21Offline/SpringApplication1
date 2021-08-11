@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title th:text="${title}"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<p th:text="'Hello, ' + ${title} + '!'" />
+<div>
+    <h1>Table</h1>
+    <table border="2" width="70%" cellpadding="2">
+    <tr><th>Id</th><th>Name</th><th>Delete</th></tr>
+        <div th:each="el : ${table}">
+            <tr>
+                <td th:text="${el.id}"/>
+                <td th:text="${el.name}"/>
+                <td><form th:action="'/' +${el.id}+'/remove'" method="post">
+                    <button class="btn btn-warning">Удалить</button>
+                </form></td>
+            </tr>
+            <br/>
+         </div>
+        <form action = "/add" method ="post">
+            <input type="text" name="name" placeholder="Введите название продукта">
+            <button type="submit" class="btn btn-success">Добавить</button>
+        </form>
+    </table>
+</div>
+</body>
+</html>
